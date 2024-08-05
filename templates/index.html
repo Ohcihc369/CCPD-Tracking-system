@@ -3,9 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Munali Project Tracker</title>
+    <title>Home</title>
 </head>
 <body>
-    <h1>Welcome to City Project Tracker</h1>
+    <h2>Welcome to the City Community Project</h2>
+    {% if current_user.is_authenticated %}
+        <p>Hello, {{ current_user.username }}!</p>
+        <a href="{{ url_for('submit_project') }}">Submit a Project</a>
+        <a href="{{ url_for('vote') }}">Vote on Projects</a>
+        <a href="{{ url_for('logout') }}">Logout</a>
+    {% else %}
+        <a href="{{ url_for('login') }}">Login</a>
+        <a href="{{ url_for('register') }}">Register</a>
+    {% endif %}
 </body>
 </html>
